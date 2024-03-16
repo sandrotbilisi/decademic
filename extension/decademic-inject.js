@@ -64,8 +64,8 @@ window.decademic = {
         },
         body: JSON.stringify({ org_id, prv_key, data, walletAddress: "0xtest" }),
       })
-        .then(("response") => response.json())
-        .then(({data}) => {
+        .then((response) => response.json())
+        .then((data) => {
           console.log("data : ", data);
           if (data.success) {
             return "Data added successfully";
