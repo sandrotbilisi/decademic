@@ -24,7 +24,7 @@ app.post("/generate-key", (req, res) => {
   
     try {
       // Verify the signature
-      const signerAddress = ethers.verifyMessage({message, signature});
+      const signerAddress = ethers.verifyMessage(message, signature);
   
       if (signerAddress.toLowerCase() === walletAddress.toLowerCase()) {
         // Generate a one-time key
