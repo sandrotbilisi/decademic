@@ -64,3 +64,29 @@ app.post("/generate-key", (req, res) => {
         .json({ success: false, error: "Invalid or already used key." });
     }
   });
+
+  app.post("/verify-token", (req, res) => {
+    const { token } = req.body;
+    try {
+      const decoded = jwt.verify(token, JWT_SECRET);
+      res.json({ success: true, walletAddress: decoded.walletAddress });
+    } catch (error) {
+      res.status(401).json({ success: false, error: "Invalid or expired token" });
+    }
+  });
+  
+  app.post("/store-id", (req, res) => {
+    const { id, private_key } = req.body;
+  
+    const encryptedPrivate_Key = bcrypt.hashSync(private_key, 10);
+  
+    idDatabase[id] = encryptedPrivate_Key;
+  
+    res.status(200).json({ success: true });
+  });
+
+  app.get("/get-stored-values", (req, res) => {
+    res.status(200).json({ idDatabase });
+  });
+  
+  
