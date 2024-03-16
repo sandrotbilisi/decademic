@@ -42,3 +42,25 @@ app.post("/generate-key", (req, res) => {
       res.status(500).send({ error: "Internal server error" });
     }
   });
+
+  app.post("/verify-key", (req, res) => {
+    const { oneTimeKey } = req.body;
+    const keyData = keysDatabase[oneTimeKey];
+  
+    if (keyData && !keyData.used) {
+      keyData.used = true;
+  
+      // Generate JWT for the wallet address
+      const token = jwt.sign(
+        { walletAddress: keyData.walletAddress },
+        JWT_SECRET,
+        { expiresIn: "1h" }
+      );
+  
+      res.json({ success: true, walletAddress: keyData.walletAddress, token });
+    } else {
+      res
+        .status(401)
+        .json({ success: false, error: "Invalid or already used key." });
+    }
+  });
