@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Decademic Authentication</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+    <style>
+        .container {
+            padding-top: 20px;
+            min-width: 350px;
+            /* Set the width of the popup */
+            min-height: 450px;
+            /* Set the height of the popup */
+            padding: 40px;
+            color: white;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        body,
+        html {
+            width: 430px;
+            height: 600px;
+       min-height: 100vh;
+
+
+            /* overflow: hidden; */
+            background: linear-gradient(to bottom, #081b31, #172439);
+            /* Updated gradient background */
+        }
+
+
+        .custom-font {
+            font-size: 20px;
+            font-weight: 600 !important;
+            margin-bottom: 5px;
+        }
+
+        .login {
+            background-color: #1F4068;
+            color: white;
+        }
+
+        .login:hover {
+            background-color: rgb(38, 52, 85);
+            color: white;
+        }
+
+
+        .stylish-input {
+            background: rgba(255, 255, 255, 0.1);
+            /* Semi-transparent background */
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            color: #FFF;
+            font-size: 16px;
+            padding: 20px 20px 20px 40px;
+            /* Larger padding on the left for the icon */
+            margin-bottom: 20px;
+            transition: all 0.3s ease-in-out;
+            background-image: url('images/icon128-no-backround-cropped.png');
+            /* Replace with your icon */
+            background-repeat: no-repeat;
+            background-size: 16px 16px;
+            /* Icon size */
+            background-position: 10px center;
+            /* Icon position */
+        }
+
+        .stylish-input:focus {
+            border-color: #FFF;
+            outline: none;
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+        }
+
+        /* Adjust the button style to match the inputs */
+        .btn.login {
+            border-radius: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            transition: background-color 0.3s ease-in-out;
+            /* Rest of the button styles */
+        }
+
+        .btn.login:hover {
+            background-color: #2b4a72;
+            /* Slightly lighter blue on hover */
+            /* Rest of the button hover styles */
+        }
+
+        #oneTimeKeySection {
+            margin-top: 50px;
+        }
+
+        .padding-bottom-5 {
+            padding-bottom: 50px;
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            /* Match the body's background color */
+            color: white;
+            font-size: 14px;
+            padding: 10px;
+        }
+
+        .footer-line {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            /* Light line for the footer */
+        }
+
+        .footer-link {
+            color: #5599FF;
+            /* A color that stands out, adjust as needed */
+            text-decoration: none;
+        }
+
+        .footer-link:hover {
+            text-decoration: underline;
+        }
+
+        .custom- {
+            padding-bottom: 10px;
+        }
+
+        .collections {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            padding: 15px;
+            height: calc(100vh - 200px);
+            overflow-y: auto;
+        }
+
+        .collections .block {
+            height: 60vh;
+            /* Set the height */
+            margin: 10px;
+            background-color: #1F4068;
+            color: white;
+            border-radius: 10px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            overflow-y: auto;
+            background-image: url('images/university-tos\ -light.png');
+            background-size: cover;
+            background-position: center;
+
+
+
+            transition: transform 0.5s ease-in-out, background-color 0.3s ease, box-shadow 0.5s ease, scale 0.5s ease;
+            /* Add transition for box-shadow */
+        }
+
+        .certificate-icon {
+            background-image: url('images/certificate-icon-light.png') !important;
+        }
+
+
+        .collections .block:hover {
+            background-color: #2b4a72;
+            scale: 1.15;
+            /* Updated transformation with slight rotation */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            /* Shadow effect for depth */
+        }
+
+        .font-weight-light1 {
+            font-weight: 400 !important;
+            opacity: 0.4;
+        }
+
+        @keyframes shakeAndRotate {
+
+            0%,
+            100% {
+                transform: translateX(0) rotate(0);
+            }
+
+            10%,
+            30%,
+            50%,
+            70%,
+            90% {
+                transform: translateX(-2px) rotate(-1deg);
+            }
+
+            20%,
+            40%,
+            60%,
+            80% {
+                transform: translateX(2px) rotate(1deg);
+            }
+        }
+
+        .shake-rotate {
+            animation: shakeAndRotate 0.8s ease-in-out infinite;
+        }
+
+        .navbar {
+            /* Ensures the navbar has enough space for new elements */
+            justify-content: space-between;
+            height: 60px;
+        }
+
+        #connectedSite {
+            /* Styling for the connected site text */
+            font-size: 14px;
+            margin-left: 10px;
+        }
+
+        .fas.fa-globe-americas {
+            /* Additional styling for the globe icon if needed */
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            background-color: #061628;
+            box-shadow: 0 15px 17px rgba(0, 0, 0, 0.4);
+
+            padding: 8px;
+            color: white;
+        }
+
+        .logo-image {
+            width: 30px;
+            /* Set this to the size of your actual logo */
+        }
+
+        .account-button,
+        .settings-button {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            /* Adjust as necessary */
+            display: flex;
+            align-items: center;
+        }
+
+        .arrow-down {
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            display: inline-block;
+            padding: 3px;
+            margin-left: 5px;
+            transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+        }
+
+        .settings-icon {
+            /* Assuming you're using an image for settings icon */
+            background-image: url('./images//settings-icon.svg');
+            width: 20px;
+            /* Set this to the size of your actual icon */
+            height: 20px;
+            display: inline-block;
+            background-size: cover;
+        }
+
+        /* Adjust padding and margin as needed to fit your design */
+        .navbar-section {
+            margin-right: 10px;
+        }
+
+        /* Hover effects */
+        .account-button:hover,
+        .settings-button:hover {
+            opacity: 0.8;
+        }
+
+        .hero-section {
+            /* background: url('images/hero-background.jpg') no-repeat center center; */
+            background-size: cover;
+            padding: 20px 0 100px 0;
+            color: white;
+            text-align: center;
+        }
+
+        .hero-content h1 {
+            font-size: 2.5em;
+            margin-bottom: 0.5em;
+        }
+
+        .hero-content p {
+            font-size: 1.2em;
+            margin-bottom: 1em;
+        }
+
+        .hero-btn {
+            background-color: #4CAF50;
+            /* Change to match your site colors */
+            color: white;
+            padding: 10px 30px;
+            border: none;
+            border-radius: 5px;
+            text-transform: uppercase;
+            text-decoration: none;
+            font-size: 1em;
+        }
+
+        .hero-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="navbar">
+        <div class="navbar-section logo">
+            <img src="images/icon128-no-backround-cropped.png" alt="Logo" class="logo-image">
+        </div>
+        <div class="navbar-section account-dropdown">
+            <button class="account-button">
+                <canvas id="avatarCanvas" width="30" height="30"></canvas>
+                Account 1
+                <i class="arrow-down"></i>
+            </button>
+        </div>
+        <div class="navbar-section settings-menu">
+            <button class="settings-button">
+                <i class="settings-icon"></i>
+            </button>
+        </div>
+    </div>
+
+
+    <div class="container animate__animated animate__fadeIn hidden">
+        <h1 class="mb-2 text-center align-items-center d-flex justify-content-center gap-3 custom-"><img
+                src="images/icon128-no-backround-cropped.png" width="60" height="55" alt="" class="mr-1"> ecademic </h1>
+        <h3 class="mb-2 custom-font font-thin text-center">Get into the new world!</h3>
+        <div id="oneTimeKeySection">
+            <input type="text" id="oneTimeKey" class="form-control stylish-input" placeholder="Enter One-Time Key">
+            <button id="submitKey" class="btn login btn-block">Submit Key</button>
+        </div>
+        <div id="passwordSection" class="hidden">
+            <input type="password" id="password" class="form-control stylish-input" placeholder="Password">
+            <button id="submitPassword" class="btn login btn-block">Login</button>
+        </div>
+    </div>
+
+    <div id="loginSuccessSection" class="">
+        <h3 class="custom-font font-thin text-center">Login Successful!</h3>
+        <p class="text-center">Your Wallet Address:</p>
+        <p class="text-center" id="walletAddressDisplay"></p>
+
+        <div class="hero-section">
+            <div class="hero-content">
+                <h1 id="text-welcome"></h1>
+                <!-- <p>Your trusted partner in academic verification.</p> -->
+                <a href="#collections" class="btn hero-btn">Explore Collections</a>
+            </div>
+        </div>
+
+        <!-- Additional UI elements to interact with the application could go here -->
+
+        <h1 class="d-flex justify-content-center align-items-centere text-white">Your collections</h1>
+
+        <div class="collections">
+            <div class="block block1 d-flex flex-column">
+                <h3>Block 1</h3>
+                <p>12/4/2024</p>
+                <a href="#">View More</a>
+            </div>
+
+            <div class="block certificate-icon  d-flex flex-column">
+                <h3>Block 2</h3>
+                <p>10/24/2024</p>
+                <a href="#">View More</a>
+            </div>
+            <div class="block block1 d-flex flex-column">
+                <h3>Block 3</h3>
+                <p>2/10/2024</p>
+                <a href="#">View More</a>
+            </div>
+            <div class="block certificate-icon d-flex flex-column">
+                <h3>Block 4</h3>
+                <p>6/15/2024</p>
+                <a href="#">View More</a>
+            </div>
+            <div class="block">Block 5</div>
+            <div class="block">Block 6</div>
+        </div>
+
+        <br><br><br>
+
+        <div class="footer text-center hidden">
+            <hr class="footer-line">
+            <p>Need help? <a href="#" class="footer-link" id="supportLink">Contact Support</a></p>
+            <p>&copy; 2024 Decademic</p>
+        </div>
+
+
+
+    </div>
+
+
+    <div class="footer text-center hidden">
+        <hr class="footer-line">
+        <p>Need help? <a href="#" class="footer-link" id="supportLink">Contact Support</a></p>
+        <p>&copy; 2024 Decademic</p>
+    </div>
+    <script src="popup.js"></script>
+</body>
+
+</html>
