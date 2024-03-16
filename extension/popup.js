@@ -53,7 +53,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 });
 
-
 // Select all the blocks
 const blocks = document.querySelectorAll('.collections .block');
 
@@ -116,9 +115,6 @@ function getGreeting() {
 }
 
 document.getElementById('text-welcome').textContent = getGreeting() + '!';
-
-
-
 
 // Call the function to generate the avatar
 generateRandomGradientAvatar();
