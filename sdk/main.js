@@ -1,12 +1,8 @@
 import { ethers } from "ethers";
 import nftWithIPFS from "./build/NFTWithIPFS.json" assert { type: "json" };
-const { generateKeyPair } = require("crypto");
+import { generateKeyPair } from "crypto";
 
 const { abi } = nftWithIPFS;
-
-import { ethers } from "ethers";
-import nftWithIPFS from "./build/NFTWithIPFS.json" assert { type: "json" };
-const { generateKeyPair } = require("crypto");
 
 // console.log(abi);
 
@@ -50,7 +46,7 @@ class DAVS {
 
       //   console.log(Number(balance))
       let tokenIds = [];
-
+      let dataA = [];
       for (let i = 0; i < Number(balance); i++) {
         // Assuming balance is a BigNumber, calling toNumber() for iteration
         // console.log(i, ownerAddress)
@@ -59,12 +55,19 @@ class DAVS {
 
         let tokenURI = await nftContract.tokenURI(tokenId);
 
-        console.log(tokenURI);
+        // console.log(tokenURI);
 
         tokenIds.push(tokenId.toString());
+
+        fetch(tokenURI + "/data.json")
+          .then((response) => response.json())
+          .then((data) => {
+            //   console.log("data : ", data);
+            dataA.push(data);
+          });
       }
 
-      return tokenIds;
+      return dataA;
     };
 
     return getNFTsOwnedByAddress(
@@ -72,7 +75,6 @@ class DAVS {
       "0xb33796b1a7914E25E533d8bB1e0a9EEDA5709Bf7"
     );
   }
-
 
   async addCertificate(data) {
     fetch("http://localhost:3000/add", {
@@ -226,7 +228,7 @@ class DAVS {
     return wallet.signMessage(byteArrayMessage);
   }
 
-  async verifyData(data, signature, expectedAddress) {
+async verifyData(data, signature, expectedAddress) {
     // First, serialize and hash the data exactly as you did when signing
     const hashedMessage = ethers.id(JSON.stringify(data));
     const byteArrayMessage = Buffer.from(hashedMessage.slice(2), "hex");
@@ -243,7 +245,8 @@ class DAVS {
     // }
     return recoveredAddress;
 }
-
-
-
+  
+  // Add other methods here
 }
+
+export default DAVS;
