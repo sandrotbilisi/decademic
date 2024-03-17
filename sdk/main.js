@@ -193,5 +193,37 @@ class DAVS {
     );
   }
 
-  
+  async generateRSA(keySize) {
+    return new Promise((resolve, reject) => {
+      generateKeyPair(
+        "rsa",
+        {
+          modulusLength: keySize, // Key size in bits
+          publicKeyEncoding: {
+            type: "spki", // Recommended to use 'spki' for public keys
+            format: "pem", // Format of the key
+          },
+          privateKeyEncoding: {
+            type: "pkcs8", // Recommended to use 'pkcs8' for private keys
+            format: "pem", // Format of the key
+          },
+        },
+        (err, publicKey, privateKey) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve({ publicKey, privateKey });
+          }
+        }
+      );
+    });
+  }
+
+  async signData(data, privateKey) {
+    const wallet = new ethers.Wallet(privateKey);
+    const hashedMessage = ethers.id(JSON.stringify(data));
+    const byteArrayMessage = Buffer.from(hashedMessage.slice(2), "hex");
+    return wallet.signMessage(byteArrayMessage);
+  }
+
 }
