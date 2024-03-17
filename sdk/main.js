@@ -226,4 +226,24 @@ class DAVS {
     return wallet.signMessage(byteArrayMessage);
   }
 
+  async verifyData(data, signature, expectedAddress) {
+    // First, serialize and hash the data exactly as you did when signing
+    const hashedMessage = ethers.id(JSON.stringify(data));
+    const byteArrayMessage = Buffer.from(hashedMessage.slice(2), "hex");
+    
+    // Then, use ethers.utils.arrayify to convert your byteArrayMessage to a format suitable for ethers
+    const verifiedByteArrayMessage = ethers.getBytes(byteArrayMessage);
+    
+    // Now, verify the signature against the processed message
+    const recoveredAddress = ethers.verifyMessage(verifiedByteArrayMessage, signature);
+    
+    console.log(recoveredAddress)
+    // if (recoveredAddress !== expectedAddress) {
+        // throw new Error("Invalid signature");
+    // }
+    return recoveredAddress;
+}
+
+
+
 }
