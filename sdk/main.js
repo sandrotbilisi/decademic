@@ -72,4 +72,71 @@ class DAVS {
       "0xb33796b1a7914E25E533d8bB1e0a9EEDA5709Bf7"
     );
   }
+
+
+  async addCertificate(data) {
+    fetch("http://localhost:3000/add", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        org_id: data.org_id,
+        prv_key: data.prv_key,
+        data: data.data,
+        walletAddress: data.walletAddress,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("data : ", data);
+      });
+  }
+
+  async checkPermissions(walletAddress, orgId, permission) {
+    try {
+      const response = await fetch("http://localhost:3000/check-permission", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          walletAddress: walletAddress,
+          org_id: orgId, // Ensure the property names match the backend's expectations
+          permission: permission,
+        }),
+      });
+
+      if (!response.ok) {
+        // If the server responds with a status code outside the 200 range, handle it as an error
+        const errorInfo = await response.json();
+        throw new Error(errorInfo.error || "Request failed");
+      }
+
+      // If the request was successful, you can process the response further here
+      const result = await response.json();
+      console.log(result); // For debugging purposes or further processing
+      return result;
+    } catch (error) {
+      console.error("Error checking permissions:", error);
+      throw error; // Re-throw to let calling functions handle it
+    }
+  }
+
+  async approveCertificate(data) {
+    const signature = data.signature;
+
+    delete data.signature;
+
+    const recoveredAddress = await this.verifyData(
+      data,
+      signature,
+      "0x63e6d778D938AC65882425cB05FB9A8BC76bA7FA"
+    );
+
+    
+
+    console.log(recoveredAddress);
+    // Rest of the code...
+  }
 }
