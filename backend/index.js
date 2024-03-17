@@ -260,6 +260,8 @@ app.post("/generate-key", (req, res) => {
   
     res.status(401).json({ success: false, error: "Permission denied" });
   });
+
+  
   
   const PORT = 3000;
   app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
