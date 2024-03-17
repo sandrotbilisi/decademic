@@ -1,4 +1,4 @@
-import React from "react";
+/Users/aleksandretsetskhladze/Desktop/hackathon/ethLondon_decademic/made/decademic/frontend/main/src/components/getBusinessId.jsx /Users/aleksandretsetskhladze/Desktop/hackathon/ethLondon_decademic/made/decademic/frontend/main/src/components/cryptoFunctions.jsimport React from "react";
 
 export default function requestPermissionButton() {
   const reuqestPermission = async () => {
