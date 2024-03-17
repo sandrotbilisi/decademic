@@ -162,4 +162,36 @@ class DAVS {
     }
     return result;
   }
+
+  async computeHash(data) {
+    const encoder = new TextEncoder();
+    const dataBuffer = encoder.encode(data);
+    const hashBuffer = await crypto.subtle.digest("SHA-256", dataBuffer);
+    return Array.from(new Uint8Array(hashBuffer))
+      .map((b) => b.toString(16).padStart(2, "0"))
+      .join("");
+  }
+
+  async encodeParameters(types, values) {
+    // This is a simplified example. Consider using ethers.js or a similar library for robust ABI encoding.
+    // Each type would be encoded according to its ABI type specification.
+    return (
+      "0x" +
+      types
+        .map((type, index) => {
+          switch (type) {
+            case "address":
+              return hexlifyInput(values[index]).slice(2).padStart(64, "0");
+            case "uint256":
+              return BigInt(values[index]).toString(16).padStart(64, "0");
+            // Add other cases as needed
+            default:
+              throw new Error(`Unsupported type ${type}`);
+          }
+        })
+        .join("")
+    );
+  }
+
+  
 }
