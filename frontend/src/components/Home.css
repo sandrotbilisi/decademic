@@ -1,0 +1,70 @@
+.home {
+    color: white;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .hero {
+    background: linear-gradient(to right, #6A82FB, #FC5C7D);
+    text-align: center;
+    padding: 40px 20px;
+  }
+
+  .g-3{
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .hero-title {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+  }
+  
+  .hero-actions .btn {
+    margin: 10px;
+    padding: 10px 20px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .btn-primary {
+    background-color: #007BFF;
+  }
+  
+  .btn-secondary {
+    background-color: #6c757d;
+  }
+  
+  .btn-primary:hover, .btn-secondary:hover {
+    opacity: 0.9;
+  }
+  
+  .technologies, .faqs, .cta {
+    padding: 20px;
+    background: #2A2A2A;
+    margin: 20px;
+    border-radius: 8px;
+  }
+  
+  .tech-cards {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+  
+  .tech-card {
+    background: #333;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 10px;
+    text-align: center;
+    }
+      
