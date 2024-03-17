@@ -1,0 +1,20 @@
+"filename", "language", "XML", "JavaScript JSX", "CSS", "JSON", "Markdown", "JavaScript", "HTML", "comment", "blank", "total"
+"/Users/aleksandretsetskhladze/Desktop/hackathon/ethLondon_decademic/keycert/keycert/.eslintrc.cjs", "JavaScript", 0, 0, 0, 0, 0, 21, 0, 0, 1, 22
+"/Users/aleksandretsetskhladze/Desktop/hackathon/ethLondon_decademic/keycert/keycert/README.md", "Markdown", 0, 0, 0, 0, 5, 0, 0, 0, 4, 9
+"/Users/aleksandretsetskhladze/Desktop/hackathon/ethLondon_decademic/keycert/keycert/index.html", "HTML", 0, 0, 0, 0, 0, 0, 13, 0, 1, 14
+"/Users/aleksandretsetskhladze/Desktop/hackathon/ethLondon_decademic/keycert/keycert/package-lock.json", "JSON", 0, 0, 0, 4149, 0, 0, 0, 0, 1, 4150
+"/Users/aleksandretsetskhladze/Desktop/hackathon/ethLondon_decademic/keycert/keycert/package.json", "JSON", 0, 0, 0, 26, 0, 0, 0, 0, 1, 27
+"/Users/aleksandretsetskhladze/Desktop/hackathon/ethLondon_decademic/keycert/keycert/public/search-icon.svg", "XML", 1, 0, 0, 0, 0, 0, 0, 0, 0, 1
+"/Users/aleksandretsetskhladze/Desktop/hackathon/ethLondon_decademic/keycert/keycert/public/svg-search-icon.svg", "XML", 1, 0, 0, 0, 0, 0, 0, 0, 0, 1
+"/Users/aleksandretsetskhladze/Desktop/hackathon/ethLondon_decademic/keycert/keycert/public/vite.svg", "XML", 1, 0, 0, 0, 0, 0, 0, 0, 0, 1
+"/Users/aleksandretsetskhladze/Desktop/hackathon/ethLondon_decademic/keycert/keycert/src/App.css", "CSS", 0, 0, 129, 0, 0, 0, 0, 10, 27, 166
+"/Users/aleksandretsetskhladze/Desktop/hackathon/ethLondon_decademic/keycert/keycert/src/App.jsx", "JavaScript JSX", 0, 27, 0, 0, 0, 0, 0, 0, 3, 30
+"/Users/aleksandretsetskhladze/Desktop/hackathon/ethLondon_decademic/keycert/keycert/src/assets/react.svg", "XML", 1, 0, 0, 0, 0, 0, 0, 0, 0, 1
+"/Users/aleksandretsetskhladze/Desktop/hackathon/ethLondon_decademic/keycert/keycert/src/assets/search-icon.svg", "XML", 1, 0, 0, 0, 0, 0, 0, 0, 0, 1
+"/Users/aleksandretsetskhladze/Desktop/hackathon/ethLondon_decademic/keycert/keycert/src/assets/svg-search-icon.svg", "XML", 1, 0, 0, 0, 0, 0, 0, 0, 0, 1
+"/Users/aleksandretsetskhladze/Desktop/hackathon/ethLondon_decademic/keycert/keycert/src/components/Navbar.jsx", "JavaScript JSX", 0, 44, 0, 0, 0, 0, 0, 3, 6, 53
+"/Users/aleksandretsetskhladze/Desktop/hackathon/ethLondon_decademic/keycert/keycert/src/components/Sidebar.jsx", "JavaScript JSX", 0, 11, 0, 0, 0, 0, 0, 1, 3, 15
+"/Users/aleksandretsetskhladze/Desktop/hackathon/ethLondon_decademic/keycert/keycert/src/index.css", "CSS", 0, 0, 36, 0, 0, 0, 0, 0, 8, 44
+"/Users/aleksandretsetskhladze/Desktop/hackathon/ethLondon_decademic/keycert/keycert/src/main.jsx", "JavaScript JSX", 0, 9, 0, 0, 0, 0, 0, 0, 2, 11
+"/Users/aleksandretsetskhladze/Desktop/hackathon/ethLondon_decademic/keycert/keycert/vite.config.js", "JavaScript", 0, 0, 0, 0, 0, 5, 0, 1, 2, 8
+"Total", "-", 6, 91, 165, 4175, 5, 26, 13, 15, 59, 4555

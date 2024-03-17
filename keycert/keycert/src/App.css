@@ -1,0 +1,250 @@
+.content {
+  scroll-behavior: smooth;
+}
+
+
+/* General Body Styling */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  overflow-x: hidden; /* Prevents horizontal scroll */
+  text-decoration: none; /* Removes underline from all links */
+}
+
+/* Navbar Styles */
+.navbar {
+  background-color: #fffefe;
+  overflow: hidden;
+  box-shadow: 0 1px 2px 0 #0000001a;
+  display: flex;
+  justify-content: start;
+  padding: 0 20px;
+  height: 75px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  
+}
+
+.text-black {
+  color: black;
+}
+
+.navbar a {
+  float: left;
+  display: block;
+  text-align: center;
+  padding: 14px 20px;
+  text-decoration: none;
+  transition: background-color 0.3s, color 0.3s;
+  color: black;
+  font-size: 18px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.margin-left{
+  margin-left: auto;
+}
+
+.navbar a:hover {
+  color: #f16723;
+  text-decoration: none;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+/* Sidebar Styles */
+.sidebar {
+  width: 20%;
+  height: 100vh;
+  background-color: #f4f4f4;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow-y: auto; /* Enables vertical scrolling if content overflows */
+}
+
+.sidebar h3 {
+  margin-top: 0;
+}
+
+.sidebar a {
+  display: block;
+  color: blue;
+  text-decoration: none;
+  padding: 8px;
+  margin-bottom: 5px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.sidebar a.active, .sidebar a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Content Styles */
+.content {
+  flex: 1;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.code-block {
+  background-color: #f4f4f4;
+  padding: 10px;
+  border-left: 3px solid #f80;
+  white-space: pre-wrap; /* Ensures pre tag text wraps */
+}
+
+h1, h2 {
+  color: #f80;
+}
+
+/* Additional global padding for link elements */
+a {
+  cursor: pointer;
+  text-decoration: none; /* Removes underline from all links */
+}
+
+a:hover {
+  text-decoration: underline; /* Adds underline on hover for links */
+}
+
+
+/* ... existing styles ... */
+
+/* Navbar Search Styles */
+.search-container {
+  position: relative;
+  margin-left: auto; /* Pushes the search bar to the right */
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  padding: 10px 15px;
+  font-size: 16px;
+  border: none;
+  outline: none;
+  border-radius: 20px;
+  width: 200px; /* Set a width for the search input */
+  margin-left: 20px; /* Add some space between the links and the search bar */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+  border: 1px solid #dddddd; /* Light border for definition */
+  color: black; /* Darker text for better readability */
+  background-color: #EBECF0;
+}
+
+.search-button {
+  position: absolute;
+  right: 5px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  outline: none;
+  color: #333; /* Darker icon for better readability */
+  font-size: 1.2em; /* Slightly larger icon */
+}
+
+/* Styles for button and input interaction */
+.search-input:focus,
+.search-input:hover,
+.search-button:focus,
+.search-button:hover {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* ... other styles ... */
+
+/* Responsive adjustments if needed */
+@media (max-width: 768px) {
+  .search-container {
+    width: 100%;
+    margin-top: 10px;
+  }
+  
+  .navbar a {
+    display: none; /* Hide navbar links on smaller screens */
+  }
+  
+  .navbar .hover.bold {
+    display: block; /* Keep the main brand link visible */
+  }
+}
+
+/* Sidebar styles */
+.sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto; /* Enable scrolling if content exceeds viewport height */
+}
+
+.sidebar h3 {
+  margin-top: 0;
+}
+
+.sidebar-nav {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.nav-item {
+  margin-bottom: 10px;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #007bff;
+}
+
+
+.nav-item {
+  margin-bottom: 10px;
+}
+
+.nav-link {
+  color: #333;
+  text-decoration: none;
+  padding: 10px;
+  display: block;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.nav-link:hover, .nav-link.active {
+  background-color: #007bff;
+  color: white;
+}
+
+
+.nav-item {
+  margin-bottom: 10px; /* space between items */
+}
+
+.nav-link {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: #333;
+  background-color: #e7e7e7;
+  border-radius: 4px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  background-color: #d4d4d4;
+  color: #f16723;
+}
+
+/* You can add more styles for responsiveness or aesthetics */
