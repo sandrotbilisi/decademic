@@ -1,35 +1,66 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// App.js
+
+import React, { useState, createContext } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import ConnectDecademicButton from "./components/connectDecademic";
+import ConnectMetamaskButton from "./components/connectMetamask";
+import BusinessIdGenerator from "./components/getBusinessId";
+import AddCertificateButton from "./components/addCertificateButton";
+import RequestPermissionButton from "./components/requestPermissionButton";
+import "./App.css";
+import { IDKitWidget, VerificationLevel } from "@worldcoin/idkit";
+import SubscriptionPlans from "./components/SubscriptionPlans/subscriptions";
+import EncryptComponent from "./components/EncryptComponent";
+import DecryptComponent from "./components/DecryptComponent";
+import Navbar from "./components/Navbar";
+import SuperfluidManager from "./components/SuperfluidManager";
+import Home from "./components/Home";
+
+// Creating and exporting the context
+export const decademicLoggedInContext = createContext(false);
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [decademicLoggedIn, setDecademicLoggedIn] = useState(false);
+
+  const [count, setCount] = useState(0);
+  const [sf, setSf] = useState(null);
+  const sender = "0xSenderAddressHere";
+  const recipient = "0xRecipientAddressHere";
+  const monthlyAmount = 1000; // Example monthly amount to stream
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <decademicLoggedInContext.Provider
+        value={{ decademicLoggedIn, setDecademicLoggedIn }}
+      >
+        <Router>
+          <div>
+            <Navbar />
+            <AddCertificateButton />
+            <RequestPermissionButton />
+            
+            {/* <SuperfluidManager />
+
+            <BusinessIdGenerator />
+            <br />
+            <br />
+
+
+            <br />
+
+            <EncryptComponent />
+            <DecryptComponent /> */}
+
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/business" element={<SubscriptionPlans />} />
+            </Routes>
+            
+          </div>
+        </Router>
+      </decademicLoggedInContext.Provider>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
