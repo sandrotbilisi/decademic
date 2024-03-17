@@ -139,4 +139,27 @@ class DAVS {
     console.log(recoveredAddress);
     // Rest of the code...
   }
+
+  async hexlify(input) {
+    if (typeof input === "number") {
+      return "0x" + input.toString(16);
+    } else if (typeof input === "string") {
+      // If input is already a hex string, return as is; otherwise, convert
+      return input.startsWith("0x")
+        ? input
+        : "0x" +
+            [...input].map((char) => char.charCodeAt(0).toString(16)).join("");
+    }
+    // Add additional type checks as necessary
+  }
+
+  async arrayify(hexString) {
+    if (!hexString.startsWith("0x"))
+      throw new Error("Expected hex string to start with 0x");
+    let result = [];
+    for (let i = 2; i < hexString.length; i += 2) {
+      result.push(parseInt(hexString.substr(i, 2), 16));
+    }
+    return result;
+  }
 }
