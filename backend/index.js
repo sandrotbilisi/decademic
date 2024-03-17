@@ -183,3 +183,84 @@ app.post("/generate-key", (req, res) => {
       res.status(401).json({ success: false, error: "Permission denied" });
     }
   });
+
+  app.post("/decrypt", (req, res) => {
+    // decrypt signed message with public key
+    const { signedMessage, publicKey } = req.body;
+  
+    const wallet = new ethers.Wallet(publicKey);
+    const decryptedData = wallet.verifyMessage(signedMessage);
+  
+    res.status(200).json({ decryptedData });
+  });
+  
+  app.post("/");
+  
+  // RNDM_ID_1ASD3WTHS19
+  
+  app.post("/add-permissions", (req, res) => {
+    console.log("came");
+    const apiKey = req.headers["x-api-key"];
+    if (apiKey === process.env.API_KEY) {
+      console.log("came2");
+      const { id, permissions, walletAddress } = req.body;
+  
+      console.log("id : ", id);
+      console.log("body : ", req.body);
+  
+      const arrayPermissions = JSON.parse(JSON.parse(permissions));
+      // const arrayPermissions = arrayPermissions;
+  
+      if (!permissionsArr[walletAddress]) {
+        permissionsArr[walletAddress] = {}; // Initialize it as an empty object
+      }
+  
+      if (!permissionsArr[id]) {
+        // Ensure the object for this id exists
+        permissionsArr[id] = {}; // Initialize it if it doesn't
+      }
+  
+      permissionsArr[id][walletAddress] = arrayPermissions;
+  
+      console.log("permissions : ", permissionsArr);
+  
+      res.status(200).json({ success: true });
+    } else {
+      res.status(401).json({ success: false, error: "Unauthorized" });
+    }
+  });
+  
+  app.get("/get-permissions", (req, res) => {
+    //   const apiKey = req.headers["x-api-key"];
+    //   if (apiKey === process.env.API_KEY) {
+    res.status(200).json({ permissionsArr });
+    //   } else {
+    // res.status(401).json({ success: false, error: "Unauthorized" });
+    //   }
+  });
+  
+  app.post("/check-permission", (req, res) => {
+    const { permission, org_id, walletAddress } = req.body;
+    console.log(req.body);
+    console.log("came");
+    // console.log(permissionsArr);
+  
+    // console.log(permissionsArr[org_id]);
+    // console.log(permissionsArr[org_id][walletAddress]);
+  
+    // console.log(permissionsArr);
+  
+    if (permissionsArr[org_id] && permissionsArr[org_id][walletAddress]) {
+      if (permissionsArr[org_id][walletAddress].includes(permission)) {
+        res.status(200).json({ success: true });
+      } else {
+        res.status(401).json({ success: false, error: "Permission denied" });
+      }
+    }
+  
+    res.status(401).json({ success: false, error: "Permission denied" });
+  });
+  
+  const PORT = 3000;
+  app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+  
